@@ -32,7 +32,7 @@ class Event_Schedule:
         self.start.time = self.time_format(start_time)
         self.end.time = self.time_format(end_time)
 
-def create_event(event_details, event_schedule):
+def put_event(event_details, event_schedule):
     event = {
         'summary': event_details['name'],
         'location': event_details['location'],
@@ -79,22 +79,22 @@ def create_event(event_details, event_schedule):
         return "Couldn't create event :("
 
 
-if __name__ == '__main__':
-    dummy_data = {
-        'start_date': "16-Oct-22",
-        'end_date': "16-Oct-22",
-        'start_time': "09:30AM",
-        'end_time': "05:00PM"
-    }
+def create_event(event_name, start_date, start_time, end_date, end_time):
 
     event_details = {
-        'name': "Blood Donation",
-        'location': "Telinipara, Baburbajar-Barowaritala, Town Library Hall",
+        'name': "",
+        'location': "",
         'timezone': "Asia/Kolkata",
         'recurrence': "RRULE:FREQ=DAILY, COUNT=1"
     }
+    event_details['name'] = event_name
 
     event_schedule = Event_Schedule()
-    event_schedule.quick_input(dummy_data['start_date'], dummy_data['end_date'], dummy_data['start_time'], dummy_data['end_time'])
+    event_schedule.quick_input(start_date, end_date, start_time, end_time)
 
-    create_event(event_details, event_schedule)
+    return put_event(event_details, event_schedule)
+
+
+if __name__ == '__main__':
+    # create_event()
+    pass
